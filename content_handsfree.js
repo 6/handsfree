@@ -21,6 +21,10 @@ var scrollPageY = function(direction) {
   $("html, body").animate({scrollTop: pageYOffset + scrollDelta, duration: 100});
 };
 
+var goToLink = function(linkNumber) {
+  if(links[linkNumber]) window.location.href = links[linkNumber].attr("href");
+};
+
 recognition.onresult = function(event) {
   var words = event.results[event.results.length - 1][0].transcript.trim().split(/\s+/);
   var lastWord = words[words.length - 1];
@@ -28,6 +32,7 @@ recognition.onresult = function(event) {
   if(lastWord == "up" || lastWord == "down") scrollPageY(lastWord);
   if(lastWord == "top") scroll(pageXOffset, 0);
   if(lastWord == "bottom") scroll(pageXOffset, $(document).height());
+  if(lastWord.match(/^[0-9]+$/)) goToLink(parseInt(lastWord, 10));
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
@@ -41,7 +46,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 
 var initializeLinks = function() {
   var linkNumber = 1;
-  $("a:visible").each(function(i, el) {
+  $("a:visible[href]").each(function(i, el) {
     var $el = $(el);
     var offset = $el.offset();
     if(offset.top <= 0 && offset.left <= 0) return true;
