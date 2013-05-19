@@ -25,6 +25,7 @@ recognition.onresult = function(event) {
 
   if(lastWord == "up" || lastWord == "down") scrollPageY(lastWord);
   if(lastWord == "top") scroll(pageXOffset, 0);
+  if(lastWord == "bottom") scroll(pageXOffset, $(document).height());
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
