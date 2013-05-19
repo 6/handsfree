@@ -7,6 +7,11 @@
     "default_title": "Handsfree",
     "default_icon": "start.png"
   },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content_handsfree.js"],
+    "run_at": "document_start"
+  }],
   "background": {
     "persistent": false,
     "scripts": ["background_handsfree.js"]

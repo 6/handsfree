@@ -10,5 +10,8 @@ function setStopIcon() {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   recording = !recording;
-  return recording ? setStopIcon() : setStartIcon();
+  chrome.tabs.getSelected(null, function(tab) {
+    chrome.tabs.sendMessage(tab.id, {recording: recording});
+    return recording ? setStopIcon() : setStartIcon();
+  });
 });
