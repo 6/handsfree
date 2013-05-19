@@ -1,7 +1,7 @@
 var links = {};
 var fixedNumber = {
-  "for": 4,
-  "ate": 8
+  "for": "4",
+  "ate": "8"
 };
 
 var recognition = new webkitSpeechRecognition();
