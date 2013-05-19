@@ -1,9 +1,10 @@
-var recognition = new webkitSpeechRecognition();
 var links = {};
 var fixedNumber = {
   "for": 4,
   "ate": 8
 };
+
+var recognition = new webkitSpeechRecognition();
 recognition.continuous = true;
 recognition.interimResults = false;
 recognition.lang = 'en'; // TODO - add option to select this
@@ -31,13 +32,13 @@ var goToLink = function(linkNumber) {
 
 recognition.onresult = function(event) {
   var words = event.results[event.results.length - 1][0].transcript.trim().split(/\s+/);
-  var lastWord = words[words.length - 1];
-  if(fixedNumber[lastWord]) lastWord = fixedNumber[lastWord];
+  var word = words[words.length - 1];
+  if(fixedNumber[word]) word = fixedNumber[word];
 
-  if(lastWord == "up" || lastWord == "down") scrollPageY(lastWord);
-  if(lastWord == "top") scroll(pageXOffset, 0);
-  if(lastWord == "bottom") scroll(pageXOffset, $(document).height());
-  if(lastWord.match(/^[0-9]+$/)) goToLink(parseInt(lastWord, 10));
+  if(word == "up" || word == "down") scrollPageY(word);
+  if(word == "top") scroll(pageXOffset, 0);
+  if(word == "bottom") scroll(pageXOffset, $(document).height());
+  if(word.match(/^[0-9]+$/)) goToLink(parseInt(word, 10));
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
@@ -60,7 +61,9 @@ var initializeLinks = function() {
 
     var offsetTop = Math.max(0, offset.top - 8);
     var offsetLeft = Math.max(0, offset.left - 14);
-    var html = $("<span class='handsfree-link-title'>"+ linkNumber + "</span>").css("top", offsetTop).css("left", offsetLeft);
+
+    var html = $("<span class='handsfree-link-title'>"+ linkNumber + "</span>");
+    html.css("top", offsetTop).css("left", offsetLeft);
     html.appendTo("body");
     linkNumber += 1;
   });
