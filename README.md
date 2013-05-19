@@ -1,4 +1,4 @@
-This is a Chrome extension for speech recognition-based web browsing.
+This is a Chrome extension for speech recognition-based web browsing. You can toggle it on/off by clicking the microphone icon.
 
 ### Voice Commands
 - `up`/`down`: Scroll the page up or down
