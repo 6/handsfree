@@ -48,7 +48,10 @@ var initializeLinks = function() {
 
     links[linkNumber] = $el;
 
-    $("body").append("<span class='handsfree-link-title' style='top:"+ offset.top +"px;left:"+ offset.left +"px;'>"+ linkNumber +"</span>");
+    var offsetTop = Math.max(0, offset.top - 8);
+    var offsetLeft = Math.max(0, offset.left - 14);
+    var html = $("<span class='handsfree-link-title'>"+ linkNumber + "</span>").css("top", offsetTop).css("left", offsetLeft);
+    html.appendTo("body");
     linkNumber += 1;
   });
 };
