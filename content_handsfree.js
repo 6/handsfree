@@ -16,7 +16,7 @@ var disableHandsFree = function() {
 var scrollPageY = function(direction) {
   var scrollDelta = innerHeight - 50;
   if(direction == "up") scrollDelta *= -1;
-  scroll(pageXOffset, pageYOffset + scrollDelta);
+  $("html, body").animate({scrollTop: pageYOffset + scrollDelta, duration: 100});
 };
 
 recognition.onresult = function(event) {
