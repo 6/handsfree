@@ -14,7 +14,7 @@
     "run_at": "document_start"
   }],
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": ["background.js"]
   }
 }
