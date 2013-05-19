@@ -1,14 +1,17 @@
 var recognition = new webkitSpeechRecognition();
+var links = {};
 recognition.continuous = true;
 recognition.interimResults = false;
 recognition.lang = 'en'; // TODO - add option to select this
 
 var enableHandsFree = function() {
   console.log("Enabling handsfree");
+  initializeLinks();
   recognition.start();
 };
 
 var disableHandsFree = function() {
+  removeLinks();
   recognition.stop();
 };
 
@@ -35,3 +38,21 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     disableHandsFree();
   }
 });
+
+var initializeLinks = function() {
+  var linkNumber = 1;
+  $("a:visible").each(function(i, el) {
+    var $el = $(el);
+    var offset = $el.offset();
+    if(offset.top <= 0 && offset.left <= 0) return true;
+
+    links[linkNumber] = $el;
+
+    $("body").append("<span class='handsfree-link-title' style='top:"+ offset.top +"px;left:"+ offset.left +"px;'>"+ linkNumber +"</span>");
+    linkNumber += 1;
+  });
+};
+
+var removeLinks = function() {
+  $(".handsfree-link-title").remove();
+};

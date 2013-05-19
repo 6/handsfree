@@ -1,0 +1,8 @@
+.handsfree-link-title {
+  position: absolute;
+  background: yellow;
+  border: 1px solid green;
+  padding: 0 1px;
+  font-size: 10px;
+  margin: -16px 0 0 -16px;
+}
