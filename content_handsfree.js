@@ -1,5 +1,9 @@
 var recognition = new webkitSpeechRecognition();
 var links = {};
+var fixedNumber = {
+  "for": 4,
+  "ate": 8
+};
 recognition.continuous = true;
 recognition.interimResults = false;
 recognition.lang = 'en'; // TODO - add option to select this
@@ -28,6 +32,7 @@ var goToLink = function(linkNumber) {
 recognition.onresult = function(event) {
   var words = event.results[event.results.length - 1][0].transcript.trim().split(/\s+/);
   var lastWord = words[words.length - 1];
+  if(fixedNumber[lastWord]) lastWord = fixedNumber[lastWord];
 
   if(lastWord == "up" || lastWord == "down") scrollPageY(lastWord);
   if(lastWord == "top") scroll(pageXOffset, 0);
