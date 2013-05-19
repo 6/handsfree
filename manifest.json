@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Handsfree",
+  "version": "0.1.0",
+  "description": "TODO",
+  "browser_action": {
+    "default_title": "Handsfree",
+    "default_icon": "start.png"
+  },
+  "background": {
+    "persistent": false,
+    "scripts": ["background_handsfree.js"]
+  }
+}
