@@ -15,3 +15,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     return recording ? setStopIcon() : setStartIcon();
   });
 });
+
+chrome.tabs.onUpdated.addListener(function( tabId , info ) {
+  if(info.status == "complete" ) {
+    chrome.tabs.sendMessage(tabId, {recording: recording});
+  }
+});
