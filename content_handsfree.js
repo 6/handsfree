@@ -9,7 +9,6 @@ var enableHandsFree = function() {
 };
 
 var disableHandsFree = function() {
-  console.log("Disabling handsfree");
   recognition.stop();
 };
 
