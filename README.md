@@ -3,6 +3,8 @@ Chrome extension for speech recognition-based web browsing. Toggle it on/off by 
 ### Voice Commands
 - `up`/`down`: Scroll the page up or down
 - `top`/`bottom`: Scroll to top or bottom of page
+- `back`/`forward`: Go back / forward to page in history
+- `refresh`: Refresh the current page
 - `{number}`: You will be redirected to the link associated with that number
 
 ### Caveats

@@ -45,6 +45,9 @@ recognition.onresult = function(event) {
   if(word == "up" || word == "down") scrollPageY(word);
   if(word == "top") scroll(pageXOffset, 0);
   if(word == "bottom") scroll(pageXOffset, $(document).height());
+  if(word == "forward") history.forward();
+  if(word == "back") history.back();
+  if(word == "refresh" || word == "reload") location.reload();
   if(word.match(/^[0-9]+$/)) goToLink(parseInt(word, 10));
 };
 
