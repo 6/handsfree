@@ -63,6 +63,7 @@ var initializeLinks = function() {
     var $el = $(el);
     var offset = $el.offset();
     if(offset.top <= 0 && offset.left <= 0) return true;
+    if($el.attr("href") === "#") return true;
 
     links[linkNumber] = $el;
 
