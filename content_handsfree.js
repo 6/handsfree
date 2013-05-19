@@ -9,14 +9,21 @@ recognition.continuous = true;
 recognition.interimResults = false;
 recognition.lang = 'en'; // TODO - add option to select this
 
-var enableHandsFree = function() {
+recognition.onstart = function() {
   console.log("Enabling handsfree");
   initializeLinks();
+};
+
+recognition.onend = function() {
+  removeLinks();
+  chrome.runtime.sendMessage({changeRecording: false});
+};
+
+var enableHandsFree = function() {
   recognition.start();
 };
 
 var disableHandsFree = function() {
-  removeLinks();
   recognition.stop();
 };
 

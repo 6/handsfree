@@ -33,9 +33,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.tabs.onUpdated.addListener(function(tabId, info) {
   if(info.status == "complete") {
     chrome.tabs.sendMessage(tabId, {recording: recording[tabId]});
+    toggleRecordingIcon(tabId);
   }
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   toggleRecordingIcon(activeInfo.tabId);
+});
+
+chrome.runtime.onMessage.addListener(function(request, sender) {
+  if(typeof request.changeRecording !== "undefined") {
+    recording[sender.tab.id] = request.changeRecording;
+    toggleRecordingIcon(sender.tab.id);
+  }
 });
